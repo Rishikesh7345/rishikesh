@@ -15,7 +15,8 @@
                 width: 800px;
                 height: 400px;
                 background-color: red;
-                border: 2px solid black;
+                border: 2px solid red;
+		border-radius: 50%;
             }
         </style>
 </head>
@@ -33,6 +34,19 @@
             </div> -->
         </div>
     </div>
+<div class="container">
+        <div class="max justify-content-center align-items-center d-flex">
+                <h1>hi i`m Abhi</h1>
+
+            <!-- <div class="col-4">
+                <h1>hi i`m Abhi</h1>
+            </div>
+            <div class="col-4">
+                <h1>hi i`m Abhi</h1>
+            </div> -->
+        </div>
+    </div>
+
 </body>
 
 </html>
