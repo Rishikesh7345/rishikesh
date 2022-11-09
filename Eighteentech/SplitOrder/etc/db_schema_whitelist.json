@@ -1,0 +1,26 @@
+{
+    "quote_item": {
+        "column": {
+            "qty_moved": true,
+            "qty_remaning": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "qty_moved": true,
+            "qty_remaning": true
+        }
+    },
+    "sales_invoice_item": {
+        "column": {
+            "qty_moved": true,
+            "qty_remaning": true
+        }
+    },
+    "sales_shipment_item": {
+        "column": {
+            "qty_moved": true,
+            "qty_remaning": true
+        }
+    }
+}

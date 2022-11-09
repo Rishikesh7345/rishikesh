@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>        
+        <section id="box_config" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>BuildBox Configuration</label>
+            <tab>eighteentech_config_tab</tab>
+            <resource>Eighteentech_Buildbox::config</resource>
+            <group id="fields_masks" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>BuildBox Configuration</label>
+                
+                <field id="category_id" translate="label comment" type="text" sortOrder="10" showInDefault="1">
+                    <label>Enter Box Categary Id*</label>
+                    <comment>This Categary Id will use for show box in buildbox section.</comment>
+                </field>  
+
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable BuildBox Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>                
+            </group>
+            
+        </section>
+        
+    
+        
+    </system>
+</config>

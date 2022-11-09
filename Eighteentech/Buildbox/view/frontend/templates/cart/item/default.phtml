@@ -1,0 +1,366 @@
+<?php
+/**
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength
+
+/** @var $block \Eighteentech\Buildbox\Block\Cart\Item\Renderer */
+?>
+
+<?php
+$BoxPrice ='';
+$itemPice = 0;
+$subtotal = '';
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper(\Magento\Msrp\Helper\Data::class);
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+$totalPrice = '';
+$totalItemPrice = '';
+$boxproId = '';
+
+$SampleProductshelper = $this->helper(Eighteentech\SampleProducts\Helper\Data::class);
+
+if ($block->getQty()!=0) {
+    ?>
+
+<tbody class="cart item">
+    <?php if ($_item->getBoxType() != 'yes') {?>
+    <tr class="item-info">
+        
+        <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
+            <?php if ($block->hasProductUrl()): ?>
+                <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
+                   tabindex="-1"
+                   class="product-item-photo">                   
+            <?php else: ?>
+                <span class="product-item-photo">
+            <?php endif; ?>
+            <?= $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml() ?>
+            <?php if ($block->hasProductUrl()): ?>
+                </a>
+            <?php else: ?>
+                </span>
+            <?php endif; ?>
+            <div class="product-item-details">
+                <div class="main-box-section">
+                <div class="boxstyle">
+                    <strong class="product-item-name">
+                        <?php if ($block->hasProductUrl()): ?>
+                            <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>">
+                            <?= $block->escapeHtml($block->getProductName()) ?></a>
+                        <?php else: ?>
+                            <?= $block->escapeHtml($block->getProductName()) ?>
+                        <?php endif; ?>                       
+                    </strong>
+                      <?php if ($_item->getIsSample()==1) {?><div class="message notice">
+                        <?= /* @noEscape */ $SampleProductshelper->getCartMessage();?></div> <?php } ?>
+                    <?php if ($_options = $block->getOptionList()): ?>
+                        
+                        <dl class="item-options">
+                            <?php foreach ($_options as $_option): ?>
+                                <?php if($_option['label'] != 'unique_box_id'){ ?>
+                                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                                <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                                <dd>
+                                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                                            <?= $block->escapeHtml($_formatedOptionValue['full_view'], ['span', 'a'])?>
+                                        <?php else: ?>
+                                            <?= $block->escapeHtml($_formatedOptionValue['value'], ['span', 'a']) ?>
+                                    <?php endif; ?>
+                                </dd>
+                            <?php } endforeach; ?>
+                        </dl>
+                        <dl>
+                        <?php if ($_item->getBoxId() == 1) {?>
+                    
+                        <?php
+                        $additionalOptions = $_item->getOptionByCode('info_buyRequest');
+                        $buyRequest =$additionalOptions->getValue();
+                        
+                        $itemList = json_decode($buyRequest,true);
+                    //    print_r($itemList['options']);
+                        // die;
+                        $imgPath  = '';
+                        $imgtitle = '';
+                        if(!empty($itemList['options'])){
+                        foreach($itemList['options'] as $getOptions){
+                                                        
+                            if(isset($getOptions['title']) || isset($getOptions['quote_path'])){
+                                $imgtitle = $getOptions['title'];
+                                $imgPath = $getOptions['quote_path'];
+                            }
+                            // foreach($getOptions as $getOpt){
+                            //     echo $getOpt['title'];
+                            // }
+                            // if (!empty($getOptions['quote_path'])){
+                            //  $imgPath = $getOptions['quote_path'];
+                            //  $imgtitle = $getOptions['title'];
+                            // }
+                        //  break;
+                        }
+                        if($imgPath != ''){
+                            echo '<div><span class="logo-title">Logo: </h4><a href="'.$block->getBaseUrl().'media/'.$imgPath.'" target="_blank">'.$imgtitle.'</a></div>';}
+                          } 
+                        }?>
+                    </dl>
+                    <?php endif; ?>  
+                        <?php if ($messages = $block->getMessages()): ?>
+                            <?php foreach ($messages as $message): ?>
+                            <div class= "cart item message <?= $block->escapeHtmlAttr($message['type']) ?>">
+                                <div><?= $block->escapeHtml($message['text']) ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+                        <?php if ($addInfoBlock): ?>                    
+                            <?= /* @noEscape */ $addInfoBlock->setItem($_item)->toHtml() ?> 
+                    <?php endif; ?>
+                        <?php  if ($_item->getBoxId() != 1): ?> 
+                        <div class="actions-toolbar">                
+                            <?= /* @noEscape */ $block->getActions($_item) ?>
+                        </div>
+                    <?php endif;?>
+                        <?php  if ($_item->getBoxId() == 1) { ?>  
+                        <div class="box-toolbar">
+                            <div class="edit">                 
+                                <a href="#" id="<?= /* @noEscape */ $_item->getItemId() ?>" 
+                                class="box-edit" >Edit
+                                <input type="hidden" name="boxName" 
+                                class="boxName" value="<?= /* @noEscape */ $_item->getBoxName() ?>"
+                                >
+                                <input type="hidden" 
+                                    name="editProId" 
+                                    class="editProId" 
+                                    value="<?= /* @noEscape */ $_item->getProductId() ?>" 
+                                    prodItemId="<?= /* @noEscape */ $_item->getItemId() ?>"
+                                    />
+                                
+                                <input type="hidden" name="boxId" 
+                                class="boxId" value="<?= /* @noEscape */ $_item->getId() ?>" 
+                                editProQty="<?= /* @noEscape */ $_item->getQty() ?>">
+                                <input type="hidden" name="boxDimentions" 
+                                class="boxDimentions" value="<?= /* @noEscape */ $_item->getProductDim() ?>">
+                                <?= /* @noEscape */ $_item->getBoxweight() ?>
+                                </a>
+                            </div>
+                            <div class="delete-box">
+                                <?= /* @noEscape */ $block->getActions($_item) ?>                    
+                            </div>
+                        </div> 
+                    <?php }?>
+                </div>
+                
+                <div class="cart-box-details">
+                  
+                    <?php if ($_item->getBoxId() == 1) {?>
+                    
+                        <?php                       
+                        $boxQty = $block->getQty();
+                        $boxPerPrice = $_item->getPrice();
+                        $subtotal = $boxQty * $boxPerPrice;?>
+                    
+                        <div class="cart-per-box-price .container-row">
+                            <span class="title">Per Box Price :</span>
+                            <span class="box-price"><?= $block->getUnitPriceHtml($_item) ?></span>
+                        </div>
+                        <div class="field qty .container-row">
+                            <div class="control qty">
+                                <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
+                                    <span class="box-qty-title">Box Qty: </span><span class="qty-num">
+                                        <?= /* @noEscape */ $block->getQty() ?></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="cart-box-subtotal .container-row">
+                            <span class="total-title">Total:</span>
+                            <span class="totalPrice"> <?= /* @noEscape */ $block->convertPrice($subtotal, true) ?>
+                        </span>
+                        </div>
+                    
+                <?php }?>
+                </div>
+                </div>
+            </div>
+        </td>
+            <?php if ($_item->getBoxId() !=1) {?>
+                <?php if ($canApplyMsrp): ?>
+            <td class="col msrp" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+                <span class="pricing msrp">
+                    <span class="msrp notice"><?= $block->escapeHtml(__('See price before order confirmation.')) ?>
+                </span>
+                    <?php $helpLinkId = 'cart-msrp-help-' . $_item->getId(); ?>
+                    <a href="#" class="action help map"
+                       id="<?= ($block->escapeHtmlAttr($helpLinkId)) ?>"
+                       data-mage-init=
+                           '{"addToCart":{
+                                "origin": "info",
+                                "helpLinkId": "#<?= $block->escapeJs($block->escapeHtml($helpLinkId)) ?>",
+                                "productName": "<?= $block->escapeJs($block->escapeHtml($product->getName())) ?>",
+                                "showAddToCart": false
+                                }
+                            }'
+                    >
+                        <span><?= $block->escapeHtml(__("What's this?")) ?></span>
+                    </a>
+                </span>
+            </td>
+        <?php else: ?>
+            <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+                <?= $block->getUnitPriceHtml($_item) ?>                
+            </td>          
+        <?php endif;?>
+        <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+            <div class="field qty">
+                <div class="control qty">
+                    <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
+                        <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
+                        <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
+                               name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
+                               data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
+                               value="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
+                               type="number"
+                               size="4"
+                               step="any"
+                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="{required:true,'validate-greater-than-zero':true}"
+                               data-item-qty="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
+                               data-role="cart-item-qty"/>
+                    </label>
+                </div>
+            </div>
+        </td>
+        <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
+                <?php if ($canApplyMsrp): ?>
+                <span class="cart msrp subtotal">--</span>
+            <?php else: ?>
+                <?= /* @noEscape */ $block->getRowTotalHtml($_item) ?>               
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php }
+    }?>
+    <?php if ($_item->getBoxId() == 1) {
+            $BoxPrice = $_item->getPrice();}?>
+    <?php  if ($_item->getBoxId() == 1) { ?> 
+        <tr class="item-box item">
+            <td colspan="4" class="col item">
+                <div class="actions-box">
+                <h3 class="item-this-box"><span>Items in this box</span></h3>
+                <div class="custom-pro-item">
+                <?php
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $cart = $objectManager->get(\Magento\Checkout\Model\Cart::class);
+                    $quote = $cart->getQuote();
+                    $items = $quote->getAllVisibleItems();
+                    
+                foreach ($items as $item) {?>
+                    <?php if ($item->getBoxItemId() == $_item->getItemId()): ?>
+                        <div class="box-items">
+                            <?php
+                            $objectmanager = \Magento\Framework\App\ObjectManager::getInstance();
+                            $product_id = $item->getProductId();
+                            $product = $objectmanager ->create(\Magento\Catalog\Model\Product::class)
+                            ->load($product_id);
+                            $productimages = $product->getMediaGalleryImages();
+                            ?>
+                            <div class="box-cart-image">
+                                <?php foreach ($productimages as $productimage) {?>
+                                    <div class="pro-image"> 
+                                        <?= /* @noEscape */ '<img src="'.$productimage["url"]. '" 
+                                        width="100" height="100" />';?>
+                                    </div>
+                                <?php break; } ?> 
+                            </div> 
+
+                            <div class="cart_item_details">
+                                <div class="box-details">
+                                    <div class="box-item-name">                     
+                                        <h4><?= /* @noEscape */ $item->getName() ?></h4>
+                                    </div>
+                                    <div class="cart_priceContainer cart_item_qty">
+                                        <div class="cart_item_prodQty">
+                                            <span class="cart_qty_title">Qty:</span>
+                                            <span class="cart_prodqty_num"><?= /* @noEscape */ $item->getQty() ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <article class="cart_pricesSection">
+                                    <div class="cart_pricecontainer cart-item-price">
+                                        <div class="cart_item_prod-price">
+                                            <span class="cart_price_title">Item price:</span>
+                                            <span class="cart_prodPrice">
+                                                <?= /* @noEscape */ $block->convertPrice($item->getPrice(), true) ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="cart_pricecontainer cart-item-total">
+                                        <div class="cart_item_prod-pricetotal">
+                                            <span class="cart_price_title">Item total:</span>
+                                            <span class="cart_prod-Price tot-price">
+                                                <?php $totPrice = $item->getQty() * $item->getPrice();?>
+                                                <?= /* @noEscape */ $block->convertPrice($totPrice, true) ?></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>  
+                        <?php $itemPice = $itemPice + ($item->getPrice()*$item->getQty()); ?> 
+                        <?php endif; ?>
+                    <?php
+                }
+                ?>
+                    <div class="box_order_summarycontainer">
+                        <div class="box_items_summary_container">
+                            <?php if ($_item->getBoxProductionDay()!='') {?>
+                            <div class="box_items_summary"  style="display:none;">
+                                <span class="box_items_summary__title">Production time:</span>
+                                <span><span class="box_summary_timeName">Standard - </span>
+                                    <span class="box_items_summary_time">
+                                        <?= /* @noEscape */ $_item->getBoxProductionDay() ?> 
+                                    days
+                                </span>
+                                </span>
+                            </div>
+                           <?php } ?>
+                          
+                            <div class="box_items_summary box_each_details">
+                                
+                                <div class="box_items_summary_item">
+                                   
+                                    <div class="box_items_text">
+                                        <span class="title">Each box:</span>
+                                        <span class="BoxItemPrice">
+                                            <?= /* @noEscape */ $block->convertPrice($BoxPrice, true) ?>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="box_items_summary_item">
+                                    <div class="box_items_text">
+                                        <span class="tile">Total Price:</span>
+                                        <span class="BoxProductsTotal">
+                                        <?php if($subtotal != ''){?>
+                                            <?= /* @noEscape */ $block->convertPrice(($subtotal + $itemPice), true) ?>
+                                        <?php }?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </td>
+        </tr>
+    <?php } ?>
+</tbody>
+<?php }?>

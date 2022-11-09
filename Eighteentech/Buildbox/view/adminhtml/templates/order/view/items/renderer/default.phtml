@@ -1,0 +1,50 @@
+<?php
+/**
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+ */
+
+?>
+<?php $_item = $block->getItem() ?>
+<?php $block->setPriceDataObject($_item);
+$checkProductInBox= '';?>
+<tr>
+    <?php $i = 0;
+    $columns = $block->getColumns();
+    $lastItemNumber = count($columns) ?>
+    <?php foreach ($columns as $columnName => $columnClass): ?>
+        <?php $i++; ?>
+        <td class="<?= /* @noEscape */ $columnClass ?><?= /* @noEscape */ ($i === $lastItemNumber ? ' last' : '') ?>">
+            <?= /* @noEscape */ $block->getColumnHtml($_item, $columnName) ?>
+            <?php
+            if ($columnName == "box-type") {?>
+                <?= /* @noEscape */ $_item->getBoxType()?>
+            <?php }
+            if($columnName == "product"){				
+				if ($_item->getBoxType() == "yes") {
+					$checkProductInBox = $_item->getSku();?>
+                <?= /* @noEscape */ $_item->getBoxType()?>
+            <?php }            
+				if ($_item->getBoxId() == 1) {					
+					$productOptions = ($_item->getProductOptions());
+					if(!empty($productOptions['info_buyRequest']['options'])){
+						foreach($productOptions['info_buyRequest']['options'] as $proption){
+							if(isset($proption['quote_path'])){
+								$imgPath = $proption['quote_path'];?>
+								<?= /* @noEscape */ '<div>
+                                <span class="logo-title">Logo: </span>
+                                    <a href="'.$block->getBaseUrl().'media/'.$imgPath.'" 
+                                target="_blank">'.$proption['title'].'</a>
+                                </div>';?>
+							<?php }						
+						}
+					}
+					
+					?>            
+            <?php }
+			}
+            ?>
+        </td>
+    <?php endforeach; ?>
+</tr>

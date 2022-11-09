@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @category Eighteentech
+ * @package  Eighteentech_SplitOrder
+ *
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+        
+    
+    <table name="sales_order">
+       <column xsi:type="varchar" name="parent_order_id" nullable="true" comment="Parent Order Id" />
+       <column xsi:type="varchar" name="parent_order_item_id" nullable="true" comment="Parent Order Item Id" />
+       <column xsi:type="varchar" name="order_batch_no" nullable="true" comment="Order Batch No" />       
+   </table>
+   
+   <table name="sales_order_grid">
+       <column xsi:type="varchar" name="parent_order_id" nullable="true" comment="Parent Order Id" />
+       <column xsi:type="varchar" name="order_batch_no" nullable="true" comment="Order Batch No" />     
+   </table> 
+   
+   <table name="sales_invoice">
+       <column xsi:type="varchar" name="parent_order_id" nullable="true" comment="Parent Order Id" />
+       <column xsi:type="varchar" name="parent_order_item_id" nullable="true" comment="Parent Order Item Id" />
+       <column xsi:type="varchar" name="order_batch_no" nullable="true" comment="Order Batch No" />       
+   </table>
+   
+    <table name="quote">      
+       <column xsi:type="varchar" name="order_batch_no" nullable="true" comment="Order Batch No" />       
+   </table> 
+   
+    <table name="quote_item">
+        <column xsi:type="decimal" name="qty_moved" scale="4" precision="12" nullable="true"
+                comment="Qty Moved New Order"/>
+        <column xsi:type="decimal" name="qty_remaning" scale="4" precision="12" nullable="true"
+                comment="Qty Remaning After Moved New Order"/>
+        <column xsi:type="varchar" name="order_batch_increment" nullable="true" comment="Order Batch Increment" />
+    </table>
+
+    <table name="sales_order_item">
+       <column xsi:type="decimal" name="qty_moved" scale="4" precision="12" nullable="true"
+                comment="Qty Moved New Order"/>
+        <column xsi:type="decimal" name="qty_remaning" scale="4" precision="12" nullable="true"
+                comment="Qty Remaning After Moved New Order"/>
+        <column xsi:type="varchar" name="order_batch_increment" nullable="true" comment="Order Batch Increment" />
+    </table>
+
+    <table name="sales_invoice_item">
+       <column xsi:type="decimal" name="qty_moved" scale="4" precision="12" nullable="true"
+                comment="Qty Moved New Order"/>
+        <column xsi:type="decimal" name="qty_remaning" scale="4" precision="12" nullable="true"
+                comment="Qty Remaning After Moved New Order"/>
+    </table>
+
+    <table name="sales_shipment_item">
+        <column xsi:type="decimal" name="qty_moved" scale="4" precision="12" nullable="true"
+                comment="Qty Moved New Order"/>
+        <column xsi:type="decimal" name="qty_remaning" scale="4" precision="12" nullable="true"
+                comment="Qty Remaning After Moved New Order"/>
+    </table>
+    
+</schema>

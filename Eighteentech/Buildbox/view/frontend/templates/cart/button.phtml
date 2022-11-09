@@ -1,0 +1,332 @@
+<?php
+    /**
+     * @author 18th DigiTech Team
+     * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+     * @package Eighteentech_Buildbox
+     */
+?>
+<?php
+
+$productDim = '';
+$block->getModelData();
+if ($block->getItemsCount()): ?>
+    <?php if ($block->getItemsCount() >= 1 && $block->getConfigValue() !=""): ?>
+        <?php foreach ($block->getItems() as $cartItem):
+            $cartProId = $cartItem->getProductId();
+            $productForBox = $block->getCheckProduct($cartProId);
+            if ($cartItem->getBoxId() != 1 && $cartItem->getBoxType() != 'yes') {
+                if ($productForBox == 1) {?>
+                    <div class="build-box-btn">
+                        <button id="modal-btn">Want to build a box?</button>
+                    </div>
+                <?php break; }
+            }
+        endforeach;
+    endif;?>
+    <?php
+     $img = $block->getLayout()
+    ->createBlock(\Magento\Cms\Block\Block::class)
+    ->setBlockId('buildbox_img')
+    ->toHtml();
+    $popuptitle = $block->getLayout()
+    ->createBlock(\Magento\Cms\Block\Block::class)
+    ->setBlockId('buildbox_title')
+    ->toHtml();
+    ?>
+
+<div id="modal-content">
+    <div class="modal-inner-content">
+        <form id="build_box_form" class="build_box_form" method="post" enctype="multipart/form-data">
+
+            <div class="build_box_steps build_box_step_1" data-index="1"> 
+                <div class="build-inner">
+                    <div class="boxImg"><?= /* @noEscape */ $img?></div>
+                    <div class="box-field">
+                        <p id="invaildName" style="display: none; color:red;">Please enter a valid name</p>
+                        <div class="box-name">
+                            <?= /* @noEscape */ $popuptitle?>
+                            <input type="text" name="input-box-name" class="input-box-name" id="input-box-name" 
+                            placeholder="Enter your box name here" autocomplete="off"/>
+                        </div>
+                        <div class="boxBtn">
+                            <a href="#" type="button" class="next-btn">Get Started</a>
+                            <a href="#" type="button" class="skip-btn2">Skip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="build_box_steps build_box_step_2" data-index="3">
+                <h2 class="box-title-name"></h2>
+                <hr>
+                <h3> 
+                <?= /** @noEscape */ __('Select the products per box!( 
+                    <span class="pro-select">0</span> selected)') ?></h3>
+                <div class="product-cart4-box">
+                    <div class="product-cart-box">
+                        <?php
+                        $checkProductInCart = 0;
+                        foreach ($block->getItems() as $cartItem):
+                             $cartProId = $cartItem->getProductId();
+                             $cartItemId = $cartItem->getItemId();
+                             $productimages1 = [];
+                             $productimages1 = $block->getCartImage($cartProId);
+                             $dimension = $block->getDimension($cartProId);
+                            //  check product for box
+                             $productForBox = $block->getCheckProduct($cartProId);
+                            if ($productForBox == 1) {
+                                if ($cartItem->getBoxId() != 1 &&
+                                $cartItem->getPrice() != 0 && $cartItem->getBoxType() === null) {
+                                    $dimension = $block->getDimension($cartProId);
+                                    ?>
+                                    <div class="product-list">
+
+                                        <input type="checkbox" name="getItem[]" 
+                                        value="<?= /* @noEscape */ $cartItemId?>" 
+                                        prod-qty="<?= /* @noEscape */ $cartItem->getQty() ?>" 
+                                        data-dim="<?= /* @noEscape */ $dimension ?>" 
+                                        data-pro-id="<?= /* @noEscape */ $cartProId ?>" 
+                                        class="proDimVal" /> 
+                                        <input type="hidden" name="prodDim[]" value="<?= /* @noEscape */ $dimension?>"/>
+                                                                               
+                                        <input type="hidden" name="product-qty[]" 
+                                        class="product-qty" value="<?= /* @noEscape */ $cartItem->getQty() ?>"/>
+                                        
+                                        <div class="product-cart-box" >
+                                            <?php foreach ($productimages1 as $productimage1) {?>
+                                                <div class="pro-image">
+                                                    <?= /* @noEscape */
+                                                    '<img src="'.$productimage1["url"]. '"
+                                                     width="100" height="100" />';?>
+                                                    </div>
+                                            <?php break; } ?>                                                      
+                                            <div class="name"> 
+                                                <h2><?= /* @noEscape */ $cartItem->getName()?></h2>
+                                            </div>
+                                            <div class="price"> 
+                                                <h3>Item price: 
+                                                    <?= /* @noEscape */ $block->getCurrencyWithFormat(
+                                                        $cartItem->getPrice()
+                                                    )?>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                <?php } else {
+                                    $checkProductInCart = 1;
+                                }
+                            }
+                        endforeach;
+                        ?> 
+                    </div>
+                    <div class="box-btn">
+                        <p id="errMsg" class="errMsg">
+                            <?= /** @noEscape */
+                             __('Please select at least one product for box') ?></p>
+                        <a href="#" class="pre-btn2">Back</a>
+                        <a href="#" class="next-btn2"><?= /** @noEscape */ __('Continue') ?></a>
+                    </div>         
+                </div>
+            </div>
+            
+            <div class="build_box_steps build_box_step_3" data-index="2">
+                <h2 class="box-title-name"></h2>
+                <hr>
+                <h2> 
+                <?= /** @noEscape */ __('Select any one type of box you want!') ?></h2>         
+                <div class="product-cart2-box box-wrapper"> 
+                    <div class="product-cart-box"> 
+                        <div id="productBox" class="owl-carousel owl-theme"></div>
+                    </div> 
+                    <div class="box-btn">
+                        <p id="boxErrMsg" class="errMsg"><?= /** @noEscape */ __('Please Choose a box.') ?></p>
+                        <a href="#" class="pre-btn3"><?= /** @noEscape */ __('Back') ?></a> 
+                        <a href="#" class="next-btn3 show_product_list">
+                            <?= /** @noEscape */ __('Continue') ?></a >                        
+                    </div>                
+                </div>
+            </div>    
+
+            <div class="build_box_steps build_box_step_4" data-index="4">
+                <h2 class="box-title-name"></h2>
+                <h2> 
+                    <?= /** @noEscape */ __('I would like to order')?> 
+                    <input type="text" name="boxQty" value="1" class="boxProdInput boxQty" id="boxQty" readonly>
+                    <input type="hidden" id="boxQtyHid" value="1">
+                    <input type="hidden" name="per_box_price" id="per_box_price" value="">   
+                    <input type="hidden" id="selectedProductId" name="selectedProductId[]" >
+                    <?= /** @noEscape */ __('boxes') ?>
+                    <p id="QtyErr"> <?= /** @noEscape */ __('There is a min quantity of')?> 
+                    <span id="minQty"></span> <?= /** @noEscape */ __(' for this product') ?></p>
+                    <p id="qtyResErr"></p>
+                </h2>
+                <h4 id="count-product-box">0</h4>
+                <hr>               
+                <div class="product-cart2-box">
+                    <div id="responseBox"></div>
+                    <div id="respProId"></div> 
+                    <div id="respOption"></div> 
+                    <p id="fileErr" style="display: none; color: red;">Invalid file type</p>                
+                </div> 
+                <div class="proInBox">
+                    <input type="checkbox" name="itemInBox" id="itemInBox" class="itemInBox">
+                    <label for=""><?= /** @noEscape */ __('ESDC Pricing')?></label> 
+                    <span id="esdcclick">Click to view info</span>                  
+                </div>
+                <div class="esdcinfo-show" style="display:none;">
+                <div class="esdc-content"></div>Status Updates over Email & SMS to consignee<br>
+                    Customer Care over Email & Live Chat<br>
+                    Ticket Based Issue Tracking<br>
+                    Live Dashboard<br>
+                    Replacement of Lost Consignment<br>
+                    Replacement of Missing or Damaged Parts<br>
+                    Resending of Returned Goods<br>
+                    <div class="esdc-note"><strong>NOTE:</strong><br>
+                    100% Accuracy of Addresses in our required format is mandatory<br>
+                    Modifications, Cancellation or Correction of addresses will not be entertained 
+                    after the addresses are submitted</div></div>
+                <div class="perBoxSection">
+                    
+                   <?php if ($checkProductInCart != 1) {?>                       
+                        <div class="perBoxPrice">
+                            <h4> <?= /** @noEscape */ __('Per Box Price: ') ?><span id="parPrice"></span></h4>
+                            <h4> <?= /** @noEscape */ __('Total Box price: ') ?><span id="totPrice"></span></h4>
+                        </div>
+                        <?php }?>                        
+                </div>               
+                <div class="box-btn submit_button">
+                    <p id="selectError1" class="error">Please Select item for Box.</p>
+                    <a href="#" class="pre-btn4"><?= /** @noEscape */ __('Back') ?></a>                  
+                    <button type="submit" id="submit"><?= /** @noEscape */ __('Go To Cart') ?></button>
+                </div> 
+            </div>         
+
+        </form>
+    </div>
+</div>
+
+<!-- box name edit  -->
+<div id="boxNameEdit" style="display:none;">
+    <div class="boxNameEdit">
+    
+    <form id="build_box_edit" class="build_box_form" method="post" enctype="multipart/form-data">
+        <div class="build_box_edit build_box_step_1 " data-index="1"> 
+            <div class="boxImg"></div>
+            <div class="box-name">
+                <h2 class="label-title"><span>
+                <?= /** @noEscape */ __('Create a name for your box!: ') ?></span></h2>
+                <h3><?= /** @noEscape */ __('For example, you might want to call this 
+                "Holi Gift box" or "Employee appreciation box"
+                so that you can identify the box more easily!') ?></h3>
+                <input type="text" name="edit-box-name" class="edit-box-name" />
+                <input type="hidden" name="edit-proid" class="edit-proid" />
+                <input type="hidden" name="edit-prodItemId" class="edit-prodItemId" />
+            </div>
+            <div class="boxBtn">
+                <a href="#" type="button" class="skip-btn2">Skip</a>
+                <button type="submit" id="name-edit-save"><?= /** @noEscape */ __('Save') ?></button>
+            </div>
+        </div>       
+    </form>
+    </div>
+</div>
+
+
+<div id="edit-box">
+    <form method="post" id="editBoxProdct" enctype="multipart/form-data">
+        <div class="edit_build_box edit_build_box_1" >
+            <h3> 
+                <?= /** @noEscape */ __('Select the products per box!( 
+                <span class="pro-select">0</span> selected)') ?>
+            </h3>
+           <div class="product-cart4-box">
+               <div id="resEdit"></div>
+               <div id="editRespSection"></div>
+                
+            </div>
+            <div class="box-btn boxEdit">
+                <p id="editErrMsg-1" class="errorMsg"><?= /** @noEscape */ __('Please Select At least one product 
+                for Box.') ?></p>
+                <input type="hidden" name="existId" class="existId" id="existId" />
+                <input type="hidden" name="editItemId" class="editItemId" id="editItemId" />
+                <input type="hidden" name="existBoxName" class="existBoxName" id="existBoxName" />
+                <a href="#" class="skip-btn2"><?= /** @noEscape */ __('Skip') ?></a> 
+                <a href="#" class="edit-next1 show_product_list" 
+                id="edit-next1"><?= /** @noEscape */ __('Continue') ?></a>
+            </div>
+        </div>
+
+        <div class="edit_build_box edit_build_box_2" data-index="3">
+            <h2 class="box-title-name"></h2>
+            <hr>
+            <h2> 
+            <?= /** @noEscape */ __('Select any one type of box you want!') ?></h2> 
+            <div class="product-cart2-box"> 
+                <div class="product-cart-box carousel-wrap"> 
+                    <div id="editResponse"></div>
+                </div> 
+                <div class="box-btn">
+                    <p id="editBoxErrMsg" class="errMsg"><?= /** @noEscape */ __('Please Choose a box.') ?></p>
+                    <a href="#" class="edit-pre1"><?= /** @noEscape */ __('Back') ?></a> 
+                    <a href="#" class="edit-next2 show_product_list">
+                        <?= /** @noEscape */ __('Continue') ?></a>
+                </div>                
+            </div>
+        </div>    
+
+        <div class="edit_build_box edit_build_box_3" data-index="4">
+            <h2 class="box-title-name"></h2>
+            <h2> 
+                <?= /** @noEscape */ __('I would like to order')?> 
+                <input type="text" name="editBoxQty" value="1" class="boxProdInput editBoxQty" id="editBoxQty" readonly/>
+                <input type="hidden" id="editBoxQtyHid" value="1"/>
+                <input type="hidden" name="per_box_price" id="per_box_price" value=""/>
+                <?= /** @noEscape */ __('boxs')?>
+                <p id="editQtyErr" style="display:none; font-size:16px;">
+                 <?= /** @noEscape */ __('There is a min quantity of')?> 
+                <span id="editMinQty"></span> <?= /** @noEscape */ __(' for this product') ?></p>
+                <p id="qtyResErr"></p>
+            </h2>
+            <h4 id="countProduct">0</h4>
+            <hr>               
+            <div class="product-cart2-box">                    
+                <div id="respProDetails"></div>
+                <div id="editRespOption"></div>
+                <p id="editFileErr" style="color:red;"><?= /** @noEscape */ __('Invaild File Type')?></p> 
+            </div> 
+            <div class="perBoxSection">
+                <div class="proInBox">
+                    <input type="checkbox" name="itemInBox" id="itemInBox" class="itemInBox">
+                    <label for=""><?= /** @noEscape */ __('ESDC Pricing')?></label>
+                     <span id="esdcclick">Click to view info</span> 
+                </div>
+                <div class="esdcinfo-show" style="display:none">
+                <div class="esdc-content"></div>Status Updates over Email & SMS to consignee<br>
+                    Customer Care over Email & Live Chat<br>
+                    Ticket Based Issue Tracking<br>
+                    Live Dashboard<br>
+                    Replacement of Lost Consignment<br>
+                    Replacement of Missing or Damaged Parts<br>
+                    Resending of Returned Goods<br>
+                    <div class="esdc-note"><strong>NOTE:</strong><br>
+                    100% Accuracy of Addresses in our required format is mandatory<br>
+                    Modifications, Cancellation or Correction of addresses will not be 
+                    entertained after the addresses are submitted</div></div>
+                <?php if ($checkProductInCart != 1) {?>
+
+                    <div class="perBoxPrice">
+                        <h4> <?= /** @noEscape */ __('Per Box Price: ') ?><span id="editparPrice">0</span></h4>
+                        <h4> <?= /** @noEscape */ __('Total Box price: ') ?><span id="editPrice">0</span></h4>
+                    </div>
+                <?php }?>                        
+            </div>               
+            <div class="box-btn edit_submit_button">
+                <p id="selectError1" class="error1" style="display:none;">Please Select item for Box.</p>
+                <a href="#" class="pre-btn3"><?= /** @noEscape */ __('Back') ?></a>                  
+                <button id="save-change"><?= /** @noEscape */ __('Save') ?></button>
+            </div>  
+        </div> 
+    </form>
+</div>
+
+<?php endif; ?>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    
+    <body>
+        <referenceBlock name="checkout.cart.item.renderers1">
+            <block class="Eighteentech\Buildbox\Block\CartItemRenderer" template="Eighteentech_Buildbox::cart/item/default.phtml" />              
+            <!-- <block class="Eighteentech\Buildbox\Block\CartItemRenderer" as="simple" template="Eighteentech_Buildbox::cart/item/default.phtml" />   -->
+        </referenceBlock>
+    </body>
+</page>

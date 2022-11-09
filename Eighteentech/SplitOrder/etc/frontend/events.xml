@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @category Eighteentech
+ * @package  Eighteentech_SplitOrder
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    
+    <event name="customer_save_after">
+        <observer name="save_customer_group" instance="Eighteentech\SplitOrder\Observer\SaveCustomerGroupId" />
+    </event>
+    
+</config>

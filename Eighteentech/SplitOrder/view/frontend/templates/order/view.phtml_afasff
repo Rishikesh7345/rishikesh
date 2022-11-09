@@ -1,0 +1,126 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var \Magento\Sales\Block\Order\Items $block */
+?>
+
+<?php
+$_orderObj = $block->getOrder();
+//$_order = $block->getOrder()
+$billingaddress = $_orderObj->getBillingAddress();
+?>
+<?php /** @var  $block \Eighteentech\SplitOrder\Block\View*/?>
+<div class="custom-order-view">
+	<div class="order-wrapper">
+		<span><?= $block->escapeHtml(__('Order #')) ?> <?php echo $_orderObj->getRealOrderId()?></span>		
+		<span class="order-status"><?php echo ucfirst($_orderObj->getStatus())?></span>
+		<span class="label"><?= $block->escapeHtml(__('Order Date:')) ?></span> <span><?php echo ucfirst($_orderObj->getCreatedAt())?></span>	
+	</div>
+	<ul class="items order-links"><li class="nav item current"><strong><?= $block->escapeHtml(__('Items Ordered')) ?></strong></li></ul>
+	<?= $block->getChildHtml('custom_order_items') ?>
+	<div>@@@@@@@@@@@@@@ <?= $block->getChildHtml('order_items') ?></div>
+	<div class="order-details-items ordered">
+	<div class="table-wrapper order-items">
+	<table class="data table table-order-items" id="my-orders-table" summary="Items Ordered">		
+		<thead>
+		  <tr>
+				<th class="col name"><?= $block->escapeHtml(__('Product Name')) ?></th>
+				<th class="col sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+				<th class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+				<th class="col qty"><?= $block->escapeHtml(__('Qty')) ?></th>
+				<th class="col subtotal"><?= $block->escapeHtml(__('Subtotal')) ?></th>                               
+		  </tr>
+		</thead>
+	 <tbody>
+		 <tr id="order-item-row-57">
+			<td class="col name" data-th="Product Name">
+				<strong class="product name product-item-name">Shyle Navy Blue Floral Lace Padded Lingerie Set </strong>
+					<dl class="item-options"><dt>Size</dt><dd>36C/L</dd></dl></td>
+			<td class="col sku" data-th="SKU">9118-NavyBlue-36C/L</td>
+			<td class="col price" data-th="Price"> <span class="price-excluding-tax" data-label="Excl. Tax">
+					<span class="cart-price"><span class="price">₹1,899.00</span> </span></span>
+			</td>
+			<td class="col qty" data-th="Qty">
+				<ul class="items-qty">
+					<li class="item">
+						<span class="title">Ordered</span>
+						<span class="content">1</span>
+					</li>
+				</ul>
+			</td>
+		<td class="col subtotal" data-th="Subtotal">        
+			 <span class="price-excluding-tax" data-label="Excl. Tax">
+			 <span class="cart-price"><span class="price">₹1,899.00</span></span></span>
+		</td>    
+	</tr>
+	</tbody>
+	 <tfoot>
+		<tr class="subtotal">
+			<th colspan="4" class="mark" scope="row"><?= $block->escapeHtml(__('Subtotal')) ?></th>
+			<td class="amount" data-th="Subtotal"><span class="price">₹1,899.00</span></td>
+		</tr>
+		 <tr class="grand_total">
+			<th colspan="4" class="mark" scope="row"><strong><?= $block->escapeHtml(__('Grand Total')) ?></strong></th>
+			<td class="amount" data-th="Grand Total"><strong><span class="price">₹1,938.00</span></strong></td>
+		</tr>
+	   </tfoot>
+	</table>
+	</div>
+	</div>
+	<div class="block block-order-details-view">
+	<div class="block-title">
+		<strong><?= $block->escapeHtml(__('Order Information')) ?></strong>
+	</div>
+	<div class="block-content">
+				<div class="box box-order-shipping-address">
+				<strong class="box-title"><span><?= $block->escapeHtml(__('Shipping Address')) ?></span></strong>
+				<div class="box-content">
+					<address><?php echo  $_orderObj->getCustomerLastname().' '.$_orderObj->getCustomerFirstname()?> <br>
+						<?php echo  $billingaddress->getCity()?><br>
+						<?php print_r( $billingaddress->getStreet())?><br>
+						<?php echo  $billingaddress->getRegionCode()?>, <?php echo  $billingaddress->getPostcode()?><br>
+						<?php echo  $billingaddress->getCountry()?><br>
+						<?= $block->escapeHtml(__('Mobile:')) ?><a href="tel:<?php echo  $_orderObj->getTelephone()?>"><?php echo  $_orderObj->getTelephone()?></a>
+						</address>
+				</div>
+			</div>
+
+			<div class="box box-order-shipping-method">
+				<strong class="box-title">
+					<span><?= $block->escapeHtml(__('Shipping Method')) ?></span>
+				</strong>
+				<div class="box-content"> <?= $block->escapeHtml(__('No shipping information available')) ?></div>
+			</div>
+		
+		<div class="box box-order-billing-address">
+			<strong class="box-title">
+				<span><?= $block->escapeHtml(__('Billing Address')) ?></span>
+			</strong>
+			<div class="box-content">
+				<address>Benjamin <br>
+				No. 10A<br>
+				10th East Street<br>
+				THOOTHUKKUDI,  Tamil Nadu, 628008<br>
+				India<br>
+				Mobile: <a href="tel:9013446464">9013446464</a>
+				</address>
+			</div>
+		</div>
+		<div class="box box-order-billing-method">
+			<strong class="box-title">
+				<span><?= $block->escapeHtml(__('Payment Method')) ?></span>
+			</strong>
+			<div class="box-content">
+				<dl class="payment-method">
+					<dt class="title">Cash On Delivery</dt>
+				</dl>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>

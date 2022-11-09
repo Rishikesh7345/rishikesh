@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @category Eighteentech
+ * @package  Eighteentech_SplitOrder
+ *
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+	<update handle="customer_account"/>
+    <head>
+        <css src="Eighteentech_SplitOrder::css/backend.css"/>
+    </head>
+	<body> 
+		<referenceBlock name="page.main.title"> 
+			<action method="setPageTitle"> 
+				<argument translate="true" name="title" xsi:type="string">Orders Manager</argument> 
+			</action> 
+		</referenceBlock> 
+		<referenceContainer name="content"> 
+			<!--<block class="Magento\Framework\View\Element\Template" name="customeraccount_customer" template="Eighteentech_SplitOrder::order/creatorders.phtml" cacheable="false" ttl="0">
+			</block> -->
+			
+			<block class="Eighteentech\SplitOrder\Block\OrderGrid" name="order_grid" template="Eighteentech_SplitOrder::order/creatorders.phtml" cacheable="false" />
+		            <uiComponent name="eighteentech_splitorder_order_split"/>
+		</referenceContainer> 
+	</body> 
+	
+	
+	
+	
+</page>

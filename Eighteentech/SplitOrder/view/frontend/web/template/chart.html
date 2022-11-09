@@ -1,0 +1,33 @@
+
+
+<div id="line-example">
+	<h2>Simple Horizontal Bar Chart Example Like Batch</h2>
+	<!-- <pre data-bind="text: ko.toJSON(SimpleLineData, null, 2)"></pre> -->
+	<canvas id="some-simple-line-chart"
+			data-bind="chart: { type: 'horizontalBar', data: SimpleLineData,options: {  scales : { yAxes : [{ ticks : {	min : 0	}}]	} }}"></canvas>	
+</div>
+
+<div id="bar-example">
+	<h2>Simple bar Chart Example</h2>
+	<!-- <pre data-bind="text: ko.toJSON(BarChartData, null, 2)"></pre> -->
+	<canvas id="some-simple-bar-chart"
+			data-bind="chart: { type: 'bar', data: BarChartData }"></canvas>	
+</div>
+
+<div id="dynamic-pie-example">
+	<h2>Dynamic Pie Chart Data! like Order Delivery Status</h2>
+	<canvas id="some-dynamic-pie-chart"
+			data-bind="chart: { type: 'pie', data: DynamicDoughnutData, observeChanges: true, throttle: 1000}"></canvas>	
+</div>
+<span data-bind="text: isMobile()"></span>
+<div id="dynamic-doughnut-example">
+	<h2>Dynamic Doughnut Chart Data! like City Wise Order Split</h2>
+	<canvas id="some-dynamic-doughnut-chart" data-bind="chart: { type: 'doughnut', data: DynamicDoughnutData }"></canvas>
+	<p>The above chart is generated dynamically using the data in the view model and rendered into the canvas</p>
+	<p>If you change any of the values beneath the chart will update to reflect them every second</p>
+	<label>Red</label><input type="number" data-bind="value: RedValue" />
+	<label>Green</label><input type="number" data-bind="value: GreenValue" />
+	<label>Yellow</label><input type="number" data-bind="value: YellowValue" />
+</div>
+
+tooltips: { enabled: false},plugins: {datalabels: { formatter: (value, ctx) => { let sum = 0; let dataArr = ctx.chart.data.datasets[0].data;                dataArr.map(data => {sum += data;}); let percentage = (value*100 / sum).toFixed(2)+"%"; return percentage; }, color: '#fff', }

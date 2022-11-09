@@ -1,0 +1,203 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Eighteentech\Buildbox\Setup;
+
+use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Catalog\Setup\CategorySetupFactory;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
+
+/**
+ * Upgrade attribute data
+ * @author 18th Digitech
+ */
+class UpgradeData implements UpgradeDataInterface
+{
+
+    /**
+
+     * @var EavSetupFactory
+     */
+    private $eavSetupFactory;
+
+    /**
+     * @var CategorySetupFactory
+     */
+    private $categorySetupFactory;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
+     * @var AttributeSetFactory
+     */
+    private $attributeSetFactory;
+
+    /**
+     * Attribute Upgrade constructor.
+     *
+     * @param EavSetupFactory $eavSetupFactory
+     * @param CategorySetupFactory $categorySetupFactory
+     * @param StoreManagerInterface $storeManager
+     * @param AttributeSetFactory $attributeSetFactory
+     */
+    public function __construct(
+        EavSetupFactory $eavSetupFactory,
+        CategorySetupFactory $categorySetupFactory,
+        StoreManagerInterface $storeManager,
+        AttributeSetFactory $attributeSetFactory
+    ) {
+        $this->eavSetupFactory = $eavSetupFactory;
+        $this->categorySetupFactory = $categorySetupFactory;
+        $this->storeManager = $storeManager;
+        $this->attributeSetFactory = $attributeSetFactory;
+    }
+
+    /**
+     * Upgrade
+     *
+     * @param array $setup
+     * @param array $context
+     */
+    public function upgrade(\Magento\Framework\Setup\ModuleDataSetupInterface
+    $setup, \Magento\Framework\Setup\ModuleContextInterface $context): void
+    {
+        $categorySetup = $this->categorySetupFactory->create(['setup' => $setup]);
+
+        $attributeSet = $this->attributeSetFactory->create();
+        $entityTypeId = $categorySetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+        $attributeSetId = $categorySetup->getDefaultAttributeSetId($entityTypeId);
+        $attSetName = __('Build_Boxs');
+        $data = [
+        'attribute_set_name' => $attSetName,
+        'entity_type_id' => $entityTypeId,
+        'sort_order' => 20,
+        ];
+        $attributeSet->setData($data);
+        $attributeSet->validate();
+        $attributeSet->save();
+        $attributeSet->initFromSkeleton($attributeSetId);
+        $attributeSet->save();
+        
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        $groupBoxName = __('Build Box Details');
+        
+        $attributes = [
+            'prodinbox' => [
+                'group' => 'Product Defaults',
+                'type' => 'int',
+                'label' => __('Product In Box'),
+                'input' => 'boolean',
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => false,
+                'user_defined' => true,
+                'default' => null,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'sort_order' => 2,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'attribute_set' => $attSetName
+            ],
+            'height' => [
+                'group' => $groupBoxName,
+                'type' => 'text',
+                'label' => __('Product Height'),
+                'input' => 'text',
+                
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => false,
+                'user_defined' => true,
+                'default' => null,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'sort_order' => 52,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'attribute_set' => $attSetName
+            ],
+            'width' => [
+                'group' => $groupBoxName,
+                'type' => 'text',
+                'label' => __('Product Width'),
+                'input' => 'text',
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => false,
+                'user_defined' => true,
+                'default' => null,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'sort_order' => 53,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'attribute_set' => $attSetName
+            ],
+            'lenght' => [
+                
+                'group' => $groupBoxName,
+                'type' => 'text',
+                'label' => __('Product Lenght'),
+                'input' => 'text',
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => false,
+                'user_defined' => true,
+                'default' => null,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'sort_order' => 54,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'attribute_set' => $attSetName
+            ],
+            'moqty' => [
+                'group' => $groupBoxName,
+                'type' => 'text',
+                'label' => __('Product MOQty'),
+                'input' => 'text',
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'visible' => true,
+                'required' => false,
+                'user_defined' => true,
+                'default' => null,
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => true,
+                'sort_order' => 55,
+                'used_in_product_listing' => true,
+                'unique' => false,
+                'attribute_set' => $attSetName
+            ]
+        ];
+        $entityTypeId = $eavSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+
+        if (!$eavSetup->getAttributeGroup($entityTypeId, 'Default', $groupBoxName)) {
+            $eavSetup->addAttributeGroup($entityTypeId, 'Default', $groupBoxName, 10);
+        }
+
+        foreach ($attributes as $code => $params) {
+            // @ Add attributes to the eav/attribute
+            if (!$eavSetup->getAttribute($entityTypeId, $code, 'attribute_id')) {
+                $eavSetup->addAttribute($entityTypeId, $code, $params);
+            }
+        }
+    }
+}

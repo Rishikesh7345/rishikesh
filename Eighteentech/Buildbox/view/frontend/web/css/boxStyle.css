@@ -1,0 +1,779 @@
+.box-wrapper{
+  width: 100%;
+}
+.box-carousel{
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 30px;
+}
+.box-carousel .box-card{    
+  margin: 20px 0;  
+  border-radius: 10px;
+  border: 4px solid #ed1c24;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+.build_box_steps{
+  display: none;
+}
+.build_box_steps.active{
+  display: block;
+}
+
+.buttonActive{
+  display: none;
+}
+.editActive{
+    display: block;
+}
+.editHide{
+    display: none;
+}
+
+a.action.action-edit ,#QtyErr, .errMsg{
+  display: none;
+}
+#QtyErr, .errMsg, #qtyResErr{
+  color: red;
+  font-size: 14px;
+}
+.product-list{
+  border: 2px solid blue;
+  margin-left: 5px;
+}
+
+footer.modal-footer{
+  display: none;
+}
+
+input.boxProdInput{
+  width: 44px;
+}
+
+.color-inner-list{
+  display: flex;
+}
+#count-product-box{
+  text-align: center;
+  font-size: 10px;
+}
+
+
+.active{
+    display:block;
+}
+#countProduct{
+    text-align:center;
+}
+#editqtyResErr{
+    font-size: 14px;
+    color: red;
+}
+.errorMsg{
+    color:red;
+    display:none;
+}
+
+
+/* The container1 */
+.edit_build_box{
+  display: none;
+}
+.container1 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .container1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container1:hover input ~ .checkmark {
+    background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container1 input:checked ~ .checkmark {
+    background-color: #2196F3;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container1 input:checked ~ .checkmark:after {
+    display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container1 .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+/* edit_build_box */
+.edit_build_box{
+      display: none;
+  }
+  .active{
+      display:block;
+  }
+  #countProduct{
+      text-align:center;
+  }
+  #editqtyResErr{
+      font-size: 14px;
+      color: red;
+  }
+  .errorMsg{
+      color:red;
+      display:none;
+  }
+
+  .edit_build_box_1 h3{
+    text-align: center
+  }
+
+
+  .delete_overlay{
+    display:none;
+    background-color: rgba(51, 51, 51, 0.55);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 899;
+}
+.del_popup {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button {
+    height: 44%;
+    width: 60%;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    color: #000;       
+    z-index: 999;
+    position: fixed;
+    top: 80px;
+    
+}
+.button_primary {
+    background: blue;
+    color: #fff;
+}
+.active_overlay{
+    display:block;
+}
+.active_buildbox{
+    display:none;
+    background-color: rgba(51, 51, 51, 0.55);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 901;
+}
+.modals-overlay{
+    display:none;
+}
+
+.errMsg1{
+  display:none;
+}
+.active{
+  display: block;
+}
+
+.modal-popup.build-box._inner-scroll .modal-inner-wrap {
+  
+}
+.modal-popup.build-box._inner-scroll .modal-content {
+  padding: 0px;
+}
+.modal-popup.build-box._inner-scroll .modal-header {
+  padding-bottom: 0;
+  padding-top: 0;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.modal-popup.build-box._inner-scroll .action-close {
+  padding: 0;
+  background-color: ;
+}
+.modal-popup.build-box._inner-scroll .action-close:before {
+  color: ;
+}
+.build-box-btn button#modal-btn {
+  float: right;
+  background: transparent;
+  color: ;
+  letter-spacing: 0.4px;
+  border: 0px;
+  text-transform: inherit;
+  font-family: &#39;
+ Futura PT&#39;
+ ;
+  text-decoration: underline;
+}
+.build-box-btn button#modal-btn:hover {
+  background: transparent;
+  color: ;
+  border: 0px;
+  text-decoration: none;
+}
+#edit-box .edit_build_box_1 h3 {
+  font-weight: 500;
+  font-size: 30px;
+  margin-top: 30px;
+  color: ;
+}
+#edit-box .edit_build_box_1 .product-list .price h3 {
+  font-size: 16px;
+}
+#edit-box .edit_build_box_2 h2 {
+  border: 0px;
+}
+#edit-box .error, .build_box_form .error {
+  display: none;
+  color: red;
+}
+
+#edit-box h3, .build_box_form h3 {
+  font-size: 16px;
+  color: #666;
+}
+#edit-box .build_box_step_1.active, .build_box_form .build_box_step_1.active {
+  position: relative;
+}
+#edit-box .build_box_step_1.active .build-inner, .build_box_form .build_box_step_1.active .build-inner {
+  display: flex;
+  align-items: center;
+}
+#edit-box .build_box_step_1.active .boxImg, .build_box_form .build_box_step_1.active .boxImg {
+  width: 33%;
+  background-color: #ccc;
+  float: left;
+}
+#edit-box .build_box_step_1.active .box-field, .build_box_form .build_box_step_1.active .box-field {
+  
+}
+#edit-box .build_box_step_1.active .box-field .box-name h2[data-content-type=&#39;
+heading&#39;
+], .build_box_form .build_box_step_1.active .box-field .box-name h2[data-content-type=&#39;
+heading&#39;
+] {
+  font-size: 30px;
+  color: ;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+#edit-box .build_box_step_1.active .box-field .box-name h3, .build_box_form .build_box_step_1.active .box-field .box-name h3 {
+
+}
+#edit-box .build_box_step_1.active .box-field input[type=&#34;
+text&#34;
+], .build_box_form .build_box_step_1.active .box-field input[type=&#34;
+text&#34;
+] {
+  max-width: 400px;
+  width: 96%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+}
+
+#edit-box .box-btn #submit:hover, #edit-box .box-btn a:hover, #edit-box .boxBtn #submit:hover, #edit-box .boxBtn a:hover, .build_box_form .box-btn #submit:hover, .build_box_form .box-btn a:hover, .build_box_form .boxBtn #submit:hover, .build_box_form .boxBtn a:hover {
+  background: ;
+  border: 1px solid ;
+  color: ;
+}
+
+#edit-box .box-btn #submit#save-change, #edit-box .box-btn a#save-change, #edit-box .boxBtn #submit#save-change, #edit-box .boxBtn a#save-change, .build_box_form .box-btn #submit#save-change, .build_box_form .box-btn a#save-change, .build_box_form .boxBtn #submit#save-change, .build_box_form .boxBtn a#save-change {
+  background: ;
+  border-top: 1px solid ;
+  color: ;
+}
+#edit-box .box-btn #submit#save-change:hover, #edit-box .box-btn a#save-change:hover, #edit-box .boxBtn #submit#save-change:hover, #edit-box .boxBtn a#save-change:hover, .build_box_form .box-btn #submit#save-change:hover, .build_box_form .box-btn a#save-change:hover, .build_box_form .boxBtn #submit#save-change:hover, .build_box_form .boxBtn a#save-change:hover {
+  background: ;
+  border-top: 1px solid ;
+}
+#edit-box span.price, .build_box_form span.price {
+  font-family: &#39;
+ Futura Md BT&#39;
+ ;
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  color: ;
+}
+#edit-box .edit_build_box_1, #edit-box .build_box_step_2, .build_box_form .edit_build_box_1, .build_box_form .build_box_step_2 {
+  padding: 0 20px 50px;
+}
+
+#edit-box .edit_build_box_1 hr, #edit-box .build_box_step_2 hr, .build_box_form .edit_build_box_1 hr, .build_box_form .build_box_step_2 hr {
+  border-top: 1px solid ;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  border: 0px !important;
+  width: 100%;
+  text-align: left;
+}
+
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list .pro-image, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list .pro-image, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list .pro-image, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list .pro-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list.selected, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list.selected, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list.selected, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list.selected {
+  border: 2px solid ;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+], #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+], .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+], .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+] {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:before, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:before, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:before, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:before {
+  content: &#39;
+ &#39;
+ ;
+  width: 30px;
+  height: 30px;
+  background: #f7f7f7;
+  border: 1px solid ;
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: -10px;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:checked:after, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:checked:after, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:checked:after, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list input[type=&#34;
+checkbox&#34;
+]:checked:after {
+  content: &#39;
+ &#39;
+ ;
+  border-left: 2px solid ;
+  border-bottom: 2px solid ;
+  width: 16px;
+  height: 6px;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 3px;
+  right: -3px;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list h2, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list h2, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list h2, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list h2 {
+  font-size: 16px;
+  color: ;
+  font-weight: 500;
+  margin: 0;
+}
+#edit-box .edit_build_box_1 .product-cart4-box .product-cart-box .product-list .product-cart-box, #edit-box .build_box_step_2 .product-cart4-box .product-cart-box .product-list .product-cart-box, .build_box_form .edit_build_box_1 .product-cart4-box .product-cart-box .product-list .product-cart-box, .build_box_form .build_box_step_2 .product-cart4-box .product-cart-box .product-list .product-cart-box {
+  width: 100%;
+  box-shadow: none;
+  border: 0px !important;
+  text-align: center;
+  display: block;
+}
+#edit-box .edit_build_box_2, #edit-box .build_box_step_3, .build_box_form .edit_build_box_2, .build_box_form .build_box_step_3 {
+  padding: 0 20px 50px;
+}
+#edit-box .edit_build_box_2 hr + h2, #edit-box .build_box_step_3 hr + h2, .build_box_form .edit_build_box_2 hr + h2, .build_box_form .build_box_step_3 hr + h2 {
+  font-size: 30px;
+  font-weight: 500;
+  color: ;
+}
+#edit-box .edit_build_box_2 hr, #edit-box .build_box_step_3 hr, .build_box_form .edit_build_box_2 hr, .build_box_form .build_box_step_3 hr {
+  border-top: 1px solid ;
+}
+#edit-box .edit_build_box_2 #editResponse, #edit-box .edit_build_box_2 #productBox, #edit-box .build_box_step_3 #editResponse, #edit-box .build_box_step_3 #productBox, .build_box_form .edit_build_box_2 #editResponse, .build_box_form .edit_build_box_2 #productBox, .build_box_form .build_box_step_3 #editResponse, .build_box_form .build_box_step_3 #productBox {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  border: 0px !important;
+  width: 100%;
+  text-align: left;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box, #edit-box .edit_build_box_2 #productBox .product-box, #edit-box .build_box_step_3 #editResponse .product-box, #edit-box .build_box_step_3 #productBox .product-box, .build_box_form .edit_build_box_2 #editResponse .product-box, .build_box_form .edit_build_box_2 #productBox .product-box, .build_box_form .build_box_step_3 #editResponse .product-box, .build_box_form .build_box_step_3 #productBox .product-box {
+  width: 23%;
+  box-sizing: border-box;
+  border: 2px solid #f7f7f7;
+  background: #f7f7f7;
+  padding: 10px 10px 30px;
+  text-align: center;
+  position: relative;
+  margin: 10px 1%;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box .box-prod-image, #edit-box .edit_build_box_2 #productBox .product-box .box-prod-image, #edit-box .build_box_step_3 #editResponse .product-box .box-prod-image, #edit-box .build_box_step_3 #productBox .product-box .box-prod-image, .build_box_form .edit_build_box_2 #editResponse .product-box .box-prod-image, .build_box_form .edit_build_box_2 #productBox .product-box .box-prod-image, .build_box_form .build_box_step_3 #editResponse .product-box .box-prod-image, .build_box_form .build_box_step_3 #productBox .product-box .box-prod-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box .inner-box-1, #edit-box .edit_build_box_2 #productBox .product-box .inner-box-1, #edit-box .build_box_step_3 #editResponse .product-box .inner-box-1, #edit-box .build_box_step_3 #productBox .product-box .inner-box-1, .build_box_form .edit_build_box_2 #editResponse .product-box .inner-box-1, .build_box_form .edit_build_box_2 #productBox .product-box .inner-box-1, .build_box_form .build_box_step_3 #editResponse .product-box .inner-box-1, .build_box_form .build_box_step_3 #productBox .product-box .inner-box-1 {
+  margin-bottom: 25px;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box .box-prod-name h3, #edit-box .edit_build_box_2 #productBox .product-box .box-prod-name h3, #edit-box .build_box_step_3 #editResponse .product-box .box-prod-name h3, #edit-box .build_box_step_3 #productBox .product-box .box-prod-name h3, .build_box_form .edit_build_box_2 #editResponse .product-box .box-prod-name h3, .build_box_form .edit_build_box_2 #productBox .product-box .box-prod-name h3, .build_box_form .build_box_step_3 #editResponse .product-box .box-prod-name h3, .build_box_form .build_box_step_3 #productBox .product-box .box-prod-name h3 {
+  font-size: 16px;
+  color: ;
+  font-weight: 500;
+  margin: 0;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box.selected, #edit-box .edit_build_box_2 #productBox .product-box.selected, #edit-box .build_box_step_3 #editResponse .product-box.selected, #edit-box .build_box_step_3 #productBox .product-box.selected, .build_box_form .edit_build_box_2 #editResponse .product-box.selected, .build_box_form .edit_build_box_2 #productBox .product-box.selected, .build_box_form .build_box_step_3 #editResponse .product-box.selected, .build_box_form .build_box_step_3 #productBox .product-box.selected {
+  border: 2px solid ;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+], #edit-box .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+], #edit-box .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+], #edit-box .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+], .build_box_form .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+], .build_box_form .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+], .build_box_form .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+], .build_box_form .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+] {
+  position: relative;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:before, #edit-box .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+]:before, #edit-box .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:before, #edit-box .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+]:before, .build_box_form .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:before, .build_box_form .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+]:before, .build_box_form .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:before, .build_box_form .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+]:before {
+  content: &#39;
+ &#39;
+ ;
+  width: 30px;
+  height: 30px;
+  background: #f7f7f7;
+  border: 1px solid ;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: -10px;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:checked:after, #edit-box .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+]:checked:after, #edit-box .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:checked:after, #edit-box .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+]:checked:after, .build_box_form .edit_build_box_2 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:checked:after, .build_box_form .edit_build_box_2 #productBox .product-box input[type=&#34;
+radio&#34;
+]:checked:after, .build_box_form .build_box_step_3 #editResponse .product-box input[type=&#34;
+radio&#34;
+]:checked:after, .build_box_form .build_box_step_3 #productBox .product-box input[type=&#34;
+radio&#34;
+]:checked:after {
+  content: &#39;
+ &#39;
+ ;
+  background: ;
+  width: 24px;
+  height: 24px;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -3px;
+  right: -6px;
+  border-radius: 50%;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box h2, #edit-box .edit_build_box_2 #productBox .product-box h2, #edit-box .build_box_step_3 #editResponse .product-box h2, #edit-box .build_box_step_3 #productBox .product-box h2, .build_box_form .edit_build_box_2 #editResponse .product-box h2, .build_box_form .edit_build_box_2 #productBox .product-box h2, .build_box_form .build_box_step_3 #editResponse .product-box h2, .build_box_form .build_box_step_3 #productBox .product-box h2 {
+  font-size: 16px;
+  color: ;
+  font-weight: 500;
+  margin: 0;
+}
+#edit-box .edit_build_box_2 #editResponse .product-box .box-prod-price h3 span.price, #edit-box .edit_build_box_2 #productBox .product-box .box-prod-price h3 span.price, #edit-box .build_box_step_3 #editResponse .product-box .box-prod-price h3 span.price, #edit-box .build_box_step_3 #productBox .product-box .box-prod-price h3 span.price, .build_box_form .edit_build_box_2 #editResponse .product-box .box-prod-price h3 span.price, .build_box_form .edit_build_box_2 #productBox .product-box .box-prod-price h3 span.price, .build_box_form .build_box_step_3 #editResponse .product-box .box-prod-price h3 span.price, .build_box_form .build_box_step_3 #productBox .product-box .box-prod-price h3 span.price {
+  color: #666666;
+  font-weight: 400;
+}
+#edit-box .edit_build_box_3, #edit-box .build_box_step_4, .build_box_form .edit_build_box_3, .build_box_form .build_box_step_4 {
+  padding: 0 20px 50px;
+}
+#edit-box .edit_build_box_3 h2.box-title-name, #edit-box .build_box_step_4 h2.box-title-name, .build_box_form .edit_build_box_3 h2.box-title-name, .build_box_form .build_box_step_4 h2.box-title-name {
+  border-bottom: 1px solid ;
+  padding-bottom: 15px;
+}
+#edit-box .edit_build_box_3 h2 + h2, #edit-box .build_box_step_4 h2 + h2, .build_box_form .edit_build_box_3 h2 + h2, .build_box_form .build_box_step_4 h2 + h2 {
+  font-size: 22px;
+  border-bottom: 0px solid ;
+  padding-bottom: 0px;
+}
+#edit-box .edit_build_box_3 h2 + h2 input.boxProdInput, #edit-box .build_box_step_4 h2 + h2 input.boxProdInput, .build_box_form .edit_build_box_3 h2 + h2 input.boxProdInput, .build_box_form .build_box_step_4 h2 + h2 input.boxProdInput {
+  height: 30px;
+}
+#edit-box .edit_build_box_3 h4#count-product-box, #edit-box .build_box_step_4 h4#count-product-box, .build_box_form .edit_build_box_3 h4#count-product-box, .build_box_form .build_box_step_4 h4#count-product-box {
+  font-size: 22px;
+  font-weight: 500;
+}
+#edit-box .edit_build_box_3 .product-cart-box, #edit-box .build_box_step_4 .product-cart-box, .build_box_form .edit_build_box_3 .product-cart-box, .build_box_form .build_box_step_4 .product-cart-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details, #edit-box .build_box_step_4 .product-cart-box .product-details, .build_box_form .edit_build_box_3 .product-cart-box .product-details, .build_box_form .build_box_step_4 .product-cart-box .product-details {
+  width: 110px;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details + .product-details, #edit-box .build_box_step_4 .product-cart-box .product-details + .product-details, .build_box_form .edit_build_box_3 .product-cart-box .product-details + .product-details, .build_box_form .build_box_step_4 .product-cart-box .product-details + .product-details {
+  width: calc(50% - 110px);
+  text-align: left;
+  padding-left: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #666;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details-name h2, #edit-box .build_box_step_4 .product-cart-box .product-details-name h2, .build_box_form .edit_build_box_3 .product-cart-box .product-details-name h2, .build_box_form .build_box_step_4 .product-cart-box .product-details-name h2 {
+  font-size: 18px;
+  color: ;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details-price, #edit-box .build_box_step_4 .product-cart-box .product-details-price, .build_box_form .edit_build_box_3 .product-cart-box .product-details-price, .build_box_form .build_box_step_4 .product-cart-box .product-details-price {
+  font-size: 16px;
+  color: #666;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details-price span.price, #edit-box .build_box_step_4 .product-cart-box .product-details-price span.price, .build_box_form .edit_build_box_3 .product-cart-box .product-details-price span.price, .build_box_form .build_box_step_4 .product-cart-box .product-details-price span.price {
+  color: #666;
+  font-weight: 400;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details-img, #edit-box .build_box_step_4 .product-cart-box .product-details-img, .build_box_form .edit_build_box_3 .product-cart-box .product-details-img, .build_box_form .build_box_step_4 .product-cart-box .product-details-img {
+  border: 1px solid ;
+  padding: 4px;
+}
+#edit-box .edit_build_box_3 .product-cart-box .product-details-img img, #edit-box .build_box_step_4 .product-cart-box .product-details-img img, .build_box_form .edit_build_box_3 .product-cart-box .product-details-img img, .build_box_form .build_box_step_4 .product-cart-box .product-details-img img {
+  display: block;
+}
+#edit-box .edit_build_box_3 .product-cart-box .perBoxSection, #edit-box .build_box_step_4 .product-cart-box .perBoxSection, .build_box_form .edit_build_box_3 .product-cart-box .perBoxSection, .build_box_form .build_box_step_4 .product-cart-box .perBoxSection {
+  margin-top: 20px;
+}
+#edit-box .edit_build_box_3 .color-list-section h2, #edit-box .build_box_step_4 .color-list-section h2, .build_box_form .edit_build_box_3 .color-list-section h2, .build_box_form .build_box_step_4 .color-list-section h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+  color: ;
+  font-weight: 500;
+  text-align: left;
+}
+#edit-box .edit_build_box_3 .color-list-section .checkmark, #edit-box .build_box_step_4 .color-list-section .checkmark, .build_box_form .edit_build_box_3 .color-list-section .checkmark, .build_box_form .build_box_step_4 .color-list-section .checkmark {
+  outline: 2px solid #666;
+  border: 2px solid #fff;
+}
+#edit-box .edit_build_box_3 .color-list-section .checkmark:after, #edit-box .build_box_step_4 .color-list-section .checkmark:after, .build_box_form .edit_build_box_3 .color-list-section .checkmark:after, .build_box_form .build_box_step_4 .color-list-section .checkmark:after {
+  top: -2px;
+  left: -2px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: transparent;
+  outline: 2px solid #000;
+}
+#edit-box .edit_build_box_3 .addons-container, #edit-box .build_box_step_4 .addons-container, .build_box_form .edit_build_box_3 .addons-container, .build_box_form .build_box_step_4 .addons-container {
+  width: 100%;
+  text-align: left;
+  margin-top: 30px;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section, #edit-box .build_box_step_4 .addons-container .addons-section, .build_box_form .edit_build_box_3 .addons-container .addons-section, .build_box_form .build_box_step_4 .addons-container .addons-section {
+  width: 100%;
+  float: left;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional, #edit-box .build_box_step_4 .addons-container .addons-section .additional, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional, .build_box_form .build_box_step_4 .addons-container .addons-section .additional {
+  width: 50%;
+  background: #f5f5f5;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  text-align: left;
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-top: 1px solid ;
+  border-bottom: 1px solid ;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionTitle, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionTitle, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionTitle, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionTitle {
+  padding-right: 10px;
+  float: left;
+  margin: 10px 0;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h3, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionTitle h3, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h3, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionTitle h3 {
+  margin: 4px 0;
+  font-size: 18px;
+  color: ;
+  font-weight: 500;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h4, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionTitle h4, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h4, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionTitle h4 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: #666;
+  font-weight: 400;
+  font-size: 16px;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h4 span.price, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionTitle h4 span.price, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionTitle h4 span.price, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionTitle h4 span.price {
+  color: #666;
+  font-weight: 400;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionName, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionName, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionName, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionName {
+  font-size: 12px;
+  float: right;
+  margin: 10px 0;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+], #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+], .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+], .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+] {
+  opacity: 1;
+  height: 37px;
+  cursor: pointer;
+  position: relative;
+  width: 186px;
+}
+#edit-box .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+]:before, #edit-box .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+]:before, .build_box_form .edit_build_box_3 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+]:before, .build_box_form .build_box_step_4 .addons-container .addons-section .additional .optionName .optionFeild input[type=&#34;
+file&#34;
+]:before {
+  content: &#39;
+ &#39;
+ ;
+  background: url(&#39;
+ images/upload-img.jpg&#39;
+ );
+  display: block;
+  width: 186px;
+  height: 37px;
+  position: absolute;
+  Left: 0px;
+  top: 0px;
+}
+
+.cart-container {
+  clear: both;
+}
+.box-items {
+  display: flex;
+}
+
+article.cart_pricesSection {
+  margin-left: 50px;
+}
+
+
+/* .box-details {
+  margin-left: 160px;
+} */
+
+.main-box-section {
+  display: flex;
+  /* margin-left: 9px; */
+}
+
+
+
+.cart-per-box-price {
+  display: flex;
+}
+.cart-box-subtotal {
+  display: flex;
+}
+
+#name-pop-show:hover{
+  cursor:pointer;
+}

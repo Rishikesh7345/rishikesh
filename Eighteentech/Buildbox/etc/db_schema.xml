@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="quote_item" resource="default" engine="innodb" comment="quote_item">
+      <column xsi:type="varchar" name="box_id" length="255" default="0" nullable="false" comment="Box ID" />
+      <column xsi:type="varchar" name="box_name" nullable="false" length="255" comment="Box Name" />
+      <column xsi:type="varchar" name="box_type" nullable="true" length="255" comment="Box Type" />
+      <column xsi:type="varchar" name="box_product_id" nullable="true" length="255" comment="Box Product Id" />
+      <column xsi:type="varchar" name="product_dim" nullable="true" length="255" comment="Box Product Dimenssion" />  
+      <column xsi:type="varchar" name="esdc_pricing" nullable="true" length="255" comment="Check prodcut(yes/no)" />
+      <column xsi:type="varchar" name="box_item_id" nullable="true" length="255" comment="box_item_id" />
+   </table>
+   <table name="quote" resource="default" engine="innodb" comment="quote">
+      <column xsi:type="varchar" name="esdc_enable" nullable="true" length="255" comment="Check prodcut(yes/no)" />
+   </table>
+   <table name="sales_order_item" resource="default" engine="innodb" comment="Sales Order Item">
+      <column xsi:type="varchar" name="box_id" length="255" default="0" nullable="false" comment="Box ID" />
+      <column xsi:type="varchar" name="box_name" nullable="false" length="255" comment="Box Name" />
+      <column xsi:type="varchar" name="box_type" nullable="true" length="255" comment="Box Type" />
+      <column xsi:type="varchar" name="box_product_id" nullable="true" length="255" comment="Box Product Id" />
+      <column xsi:type="varchar" name="box_item_id" nullable="true" length="255" comment="box item id" />
+   </table>
+
+   <table name="sales_invoice_item">
+      <column xsi:type="varchar" name="box_id" length="255" default="0" nullable="false" comment="Box ID" />
+      <column xsi:type="varchar" name="box_name" nullable="false" length="255" comment="Box Name" />
+      <column xsi:type="varchar" name="box_type" nullable="true" length="255" comment="Box Type" />
+      <column xsi:type="varchar" name="box_product_id" nullable="true" length="255" comment="Box Product Id" />
+   </table>
+
+    <table name="sales_shipment_item">
+        <column xsi:type="varchar" name="box_id" length="255" default="0" nullable="false" comment="Box ID" />
+      <column xsi:type="varchar" name="box_name" nullable="false" length="255" comment="Box Name" />
+      <column xsi:type="varchar" name="box_type" nullable="true" length="255" comment="Box Type" />
+      <column xsi:type="varchar" name="box_product_id" nullable="true" length="255" comment="Box Product Id" />
+   </table>
+
+</schema>

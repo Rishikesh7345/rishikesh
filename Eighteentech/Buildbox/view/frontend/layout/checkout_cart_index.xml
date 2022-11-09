@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+ * @author 18th DigiTech Team
+ * @copyright Copyright (c) 2022 18th DigiTech (https://www.18thdigitech.com)
+ * @package Eighteentech_Buildbox
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <head>
+       <css src="Eighteentech_Buildbox::css/boxStyle.css" type="text/stylesheet"/>  
+       <script src="Eighteentech_Buildbox::js/boxScript.js"/>     
+    </head>  
+    <update handle="checkout_cart_item_renderers"/>  
+    <body>       
+        <referenceContainer name="content">
+            <block class="Eighteentech\Buildbox\Block\Cart\Button" name="buildbox" template="Eighteentech_Buildbox::cart/button.phtml" before="-">
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\File"
+                	   name="product.info.options.file"
+                	   as="file"
+                	   template="Magento_Catalog::product/view/options/type/file.phtml"/>
+            </block>
+		 </referenceContainer>
+         <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container">
+            <block class="Eighteentech\Buildbox\Block\Cart\Grid" name="checkout.cart.form" as="cart-items" template="Eighteentech_Buildbox::cart/form.phtml" after="cart.summary">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magento\Checkout\ViewModel\Cart</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\RendererList" name="checkout.cart.item.renderers" as="renderer.list"/>
+                <block class="Magento\Framework\View\Element\Text\ListText" name="checkout.cart.order.actions"/>
+            </block>            
+        </referenceContainer>       
+    </body>
+</page>

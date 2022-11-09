@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Eighteentech\SplitOrder\Block\Dashboard $block */
+
+?>
+<?php $_orders = $block->getOrders(); ?>
+ <?php foreach ($_orders as $_order): ?>
+ <?= $block->escapeHtml($_order->getRealOrderId()) ?> - 
+ <?= $block->escapeHtml($_order->getStatusLabel()) ?>
+ <br/>
+  <?php endforeach; ?>
+<div  data-bind="scope: 'chartscope'"> 
+	<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script>
+	 window.isMobile = 'shukla';
+</script>
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "chartscope": {
+                            "component": "Eighteentech_SplitOrder/js/chart"
+                        }
+                    }
+                },
+                "libChart": {
+					"productId": "23",
+					"mobile": "9013446464"
+				}
+            }
+        }
+</script>
