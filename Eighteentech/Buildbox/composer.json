@@ -1,0 +1,24 @@
+{
+    "name": "buildbox/buildbox",
+    "type": "library",
+    "description": "Logging for PHP 8.0",
+    "keywords": ["log","logging"],
+    "homepage": "https://github.com/Rishikesh7345/rishikesh/tree/main/Eighteentech/Buildbox",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rishikesh kumar",
+            "email": "mystyle73019@gmail.com",
+            "homepage": "http://abc.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Buildbox": "src"
+        }
+    }
+}
